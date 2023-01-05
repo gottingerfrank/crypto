@@ -1,6 +1,7 @@
 # find prime factors (OffSec PEN100 cryptography)
 # BUGGY !!!!
 
+
 import time
 
 # Find the prime factors of a number N = 382387, where n = p * q
@@ -43,5 +44,5 @@ def find_prime_factors(n, prime_list):
 # factor_list = find_prime_factors(100, primes)
 # print(factor_list) # works
 
-factor_list = find_prime_factors(382387, primes)
+factor_list = find_prime_factors(1000, primes)
 print(factor_list)

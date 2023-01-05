@@ -1,41 +1,63 @@
 #!/usr/env/python3
 
-# XOR Cypher - encryption/decryption
+# XOR Cipher - encryption/decryption
 # Example script
 
 import sys
 import time
 
-plaintext = 'Python Rules!'
-cyphertext = ''
-key = 'Lorem ipsum d'
 
-print(f"************ XOR ENCRYPTION - START ************\n")
-print(f"The plaintext is: 'Python Rules!'")
-time.sleep(3)
-print(f"The key is: 'Lorem ipsum d'\n")
-time.sleep(3)
-print(f"Now encrypting plaintext *** {plaintext} *** with key *** {key} *** ...")
-time.sleep(3)
+# create Usage function, if something wrong with type/length or else of cli args
+def usage:
+    print(f"Usage: ./{sys.argv[0]} {sys.argv[1]} {sys.argv[2]}")
+    sys.exit(1)
 
-for p, k in zip(plaintext, key):
-    c = ord(p) ^ ord(k)
-    cyphertext += chr(c)
 
-print(f"RESULT: *** {cyphertext} ***")
-answer = input("\nWould you like to reverse the encryption process? (y/n): ")
+def main():
+    # check commandline args
+    if len(sys.argv) != 3:
+        usage()
 
-if str(answer.lower()) == 'y':
-    decoded = ''
-    for c, k in zip(cyphertext, key):
-        decoded += chr(ord(c) ^ ord(k))
-else:
+    # assign commandline arguments
+    plaintext = sys.argv[1]
+    ciphertext = ''
+    key = sys.argv[2]
+
+    # fix key to exact length of cipher
+    nchars_plain = len(plaintext)
+    key = key[:nchars_plain]
+
+    print(f"************ XOR ENCRYPTION - START ************\n")
+    print(f"The plaintext is: '{plaintext}'")
+    time.sleep(2)
+    print(f"The key is: '{key}'\n")
+    time.sleep(2)
+    print(f"Now encrypting with 'XOR Cypher':\n", f"*** {plaintext} *** with key {key} ***\n")
+    time.sleep(2)
+
+    for p, k in zip(plaintext, key):
+        c = ord(p) ^ ord(k)
+        ciphertext += chr(c)
+
+    print(f"RESULT: *** {ciphertext} ***")
+    answer = input("\nWould you like to reverse the encryption process? (y/n): ")
+
+    if str(answer.lower()) == 'y':
+        decoded = ''
+        for c, k in zip(ciphertext, key):
+            decoded += chr(ord(c) ^ ord(k))
+    else:
+        sys.exit(0)
+
+    print(
+        f"Result:\n", f"*** ciphertext '{ciphertext}' was decrypted with key '{key}',\n"
+                      f"resulting in the decoded text:\n"
+                      f"*** '{decoded}' ***")
+    print(f"\n********* XOR ENCRYPTION/DECRYPTION - END *********\n")
+
     sys.exit(0)
 
-print(
-    f"Result: cyphertext '*** {cyphertext} ***' was decrypted with key '*** {key} ***', "
-    f"resulting in the decoded text:\n"
-    f"*** '{decoded}' ***")
-print(f"\n********* XOR ENCRYPTION/DECRYPTION - END *********\n")
 
-sys.exit(0)
+# If script called regularly, not imported as module: start main() ...
+if __name__ == '__main__':
+    main()
