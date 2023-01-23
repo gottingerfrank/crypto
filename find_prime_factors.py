@@ -15,8 +15,8 @@ def find_prime_factors(n, prime_list):
     """find list of prime factors of a large prime number n
 
     Args:
-        n (int): _description_
-        prime_list (list): _description_
+        n (int): Integer to find prime factors for
+        prime_list (list): list of primes to check
 
     Returns:
         list: List of prime factors of n
@@ -36,6 +36,7 @@ def find_prime_factors(n, prime_list):
                 time_stop = time.time()
                 num_factors_end = len(factors)
                 delta_time = time_start - time_stop
+                # Stop if search takes 1000000 ms and there was no change
                 if delta_time > 1000000 and num_factors_start == num_factors_end:
                     break
     return factors
