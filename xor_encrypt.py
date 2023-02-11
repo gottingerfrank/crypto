@@ -31,14 +31,14 @@ def main():
         key = input_key
 
     print(f"""
-    ********** XOR DECRYPTION - START **********
-    plaintext: '{plaintext}'""")
+********** XOR DECRYPTION - START **********
+plaintext: '{plaintext}'""")
     time.sleep(2)
     print(f"encrypt key: '{key}'")
     time.sleep(2)
-    print(f"Now encrypting with 'XOR Cypher'...",
-          f"plaintext:   '{plaintext}'",
-          f"encrypt key: '{key}'")
+    print(f"""Now encrypting with 'XOR Cypher'...
+plaintext:   '{plaintext}'
+encrypt key: '{key}'""")
     time.sleep(2)
 
     # encrypt plaintext with key
