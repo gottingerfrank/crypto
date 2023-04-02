@@ -1,26 +1,29 @@
-#!/usr/env/python3
+#!/usr/bin/env python3
 
 # XOR Cipher - encryption/decryption
 # Example script
 
+
 import sys
 import time
 import os
+
 
 # create Usage function, if something wrong with type/length or else of cli args
 def usage():
     print(f"Usage: ./{sys.argv[0]} <plaintext> <key>")
     sys.exit(1)
 
-def main():
+
+def main(argv):
     # check commandline args
-    if len(sys.argv) != 3:
+    if len(argv) != 3:
         usage()
 
     # assign commandline args
-    plaintext = sys.argv[1]
+    plaintext = argv[1]
     ciphertext = ''
-    input_key = sys.argv[2]
+    input_key = argv[2]
 
     # adjust keylen to match plaintext
     if len(plaintext) > len(input_key):
@@ -48,7 +51,8 @@ encrypt key: '{key}'""")
 
     print(f"ciphertext: '{ciphertext}'\n",
           f"*********** XOR DECRYPTION - END ***********")
-    answer = input("\nWould you like to reverse the encryption process? (y/n): ")
+    answer = input(
+        "\nWould you like to reverse the encryption process? (y/n): ")
 
     if str(answer.lower()) == 'n':
         print(f"Exiting program on behalf of user {os.getlogin()}...")
@@ -65,6 +69,7 @@ encrypt key: '{key}'""")
             """)
     sys.exit(0)
 
+
 # If run as script, not imported as module: start main() procedure
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1:])
